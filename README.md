@@ -74,6 +74,15 @@ Engine-RUL-Prediction/
 
 ---
 
+
+## Results
+
+<div align="center">
+  <img src="results/04_prediction_comparison.png" alt="Prediction comparison (actual vs predicted)" width="70%"/>
+  <img src="results/05_all_predictions.png" alt="All-engine predictions" width="70%"/>
+</div>
+
+---
 ## License
 
 MIT — free to use, modify and distribute.
