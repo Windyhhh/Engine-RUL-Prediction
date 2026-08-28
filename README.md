@@ -1,23 +1,45 @@
 <div align="center">
 
-# ⚙️ Engine-RUL-Prediction
+# ✈️ Engine-RUL-Prediction
 
-### Remaining useful life prediction for aero engines.
+### LSTM remaining-useful-life prediction on NASA C-MAPSS.
 
-Machine-learning pipeline on the NASA C-MAPSS dataset — feature engineering, training and visualization.
+Predict aero-engine remaining useful life from 21 sensors — a full ML pipeline from features to visualization.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![NASA](https://img.shields.io/badge/Dataset-CMAPSS-blue)](https://www.nasa.gov/)
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/)
 
 </div>
 
 ---
 
-**Engine-RUL-Prediction** builds a machine-learning pipeline to predict the **remaining useful life (RUL)** of aero engines on the **NASA C-MAPSS** dataset — including feature engineering, model training, and visual analysis.
+**Engine-RUL-Prediction** builds an **LSTM-based remaining-useful-life (RUL) prediction** system for aero-engines using the **NASA C-MAPSS** dataset. It fuses 21 sensor signals over 30 time steps to forecast remaining life, reaching **RMSE 28.54 cycles / MAE 21.13 cycles** (~70% accuracy), enabling predictive maintenance.
 
 > [!NOTE]
-> 中文项目：航空发动机寿命预测——NASA C-MAPSS 数据集，机器学习流水线，特征工程，可视化。
+> 中文项目：基于 LSTM 的航空发动机剩余使用寿命（RUL）预测——NASA C-MAPSS 数据集，21 传感器 + 30 时间步，RMSE 28.54。
+
+---
+
+## Dataset
+
+| Split | Records | Engines | Sensors |
+|-------|---------|---------|---------|
+| Train | 20,631 | 100 | 21 |
+| Test | 13,096 | 100 | 21 |
+
+Input: 21 sensors × 30 time steps. Output: remaining cycles.
+
+---
+
+## Features
+
+- **LSTM model** — captures long-term dependencies in multi-sensor time series (RMSE ≤ 30 target).
+- **Automated feature fusion** — 21-sensor data engineered and fused automatically.
+- **Predictive maintenance** — from reactive to on-demand maintenance.
+- **5 visualizations** — time series, correlation heatmap, distribution, prediction comparison, all-predictions.
+- **Deployable** — clean pipeline from data to model to plots.
 
 ---
 
@@ -29,22 +51,11 @@ cd Engine-RUL-Prediction
 
 pip install -r requirements.txt
 
-# Train + predict
-python src/main.py
-
-# Visualization
-python src/visualization.py
+python src/main.py          # train & evaluate
+python src/visualization.py # generate the 5 charts
 ```
 
-Data (`train_FD001.csv`, `test_FD001.csv`, `RUL_FD001.csv`) ships in `data/`.
-
----
-
-## Features
-
-- **C-MAPSS pipeline** — train/test/RUL on NASA FD001.
-- **Feature engineering** — sensor feature construction and selection.
-- **Visualization** — time series, correlation heatmap, prediction comparison.
+Plots land in `results/` (01_time_series … 05_all_predictions).
 
 ---
 
@@ -53,12 +64,12 @@ Data (`train_FD001.csv`, `test_FD001.csv`, `RUL_FD001.csv`) ships in `data/`.
 ```
 Engine-RUL-Prediction/
 ├── src/
-│   ├── main.py            # pipeline entry
-│   ├── rul_prediction.py  # model
-│   └── visualization.py   # plots
-├── data/                  # FD001 train/test/RUL CSVs
-├── results/               # generated figures
-└── docs/                  # design & usage docs
+│   ├── main.py            # entry
+│   ├── rul_prediction.py  # LSTM model + training
+│   └── visualization.py   # charts
+├── data/                  # C-MAPSS FD001 (train/test/RUL)
+├── results/               # 5 visualizations
+└── docs/                  # usage, design, results
 ```
 
 ---
