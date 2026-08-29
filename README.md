@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✈️ Engine-RUL-Prediction
+# 航空发动机剩余寿命预测 | Engine-RUL-Prediction
 
 ### LSTM remaining-useful-life prediction on NASA C-MAPSS.
 
